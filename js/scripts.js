@@ -29,6 +29,7 @@ Order.prototype.removePizza = function (id) {
 };
 Order.prototype.addDelivery = function (total) {
   total += 5;
+  this.isDelivering = true;
   return total;
 };
 Order.prototype.calculateCost = function (order) {
@@ -76,9 +77,6 @@ Pizza.prototype.removeTopping = function (name) {
     }
   });
 };
-// function Topping(name) {
-//   this.name = name;
-// }
 
 // UI Logic
 
@@ -116,18 +114,60 @@ function resetForm(pizzaForm, toppingCount) {
 function updatePizzaCounter(order) {
   $("#pizza-number").text(order.currentId + 1);
 }
-
+function buildReceipt(order) {
+  const receipt = $("#receipt");
+  Object.keys(order.pizzas).forEach(function (key) {
+    const pizza = order.findPizza(key);
+    let htmlString =
+      "<ul id=" +
+      pizza.id +
+      "> <p>Pizza #" +
+      pizza.id +
+      "</p> <button class='delete'>X</button> <li> Price: $" +
+      pizza.cost +
+      "</li> <li> Size:" +
+      pizza.size +
+      "</li> <li> Number of Toppings: " +
+      pizza.toppingCount;
+    +"</li> </ul>";
+    $(receipt).append(htmlString);
+  });
+  $(".delete").click(function () {
+    const id = $(this).parent("ul").attr("id");
+    if (!order.removePizza(id)) {
+      alert("Prooblem with deleting pizza");
+    }
+    let total = order.calculateCost(order);
+    updateTotal(total);
+    $("#" + id).remove();
+  });
+}
+function buildCheckoutPage(order) {}
 function checkout(order) {
   $("#order-form").addClass("hidden");
   $("#checkout-form").removeClass("hidden");
-  buildReceipt(order);
   let total = order.calculateCost(order);
+  buildReceipt(order);
   updateTotal(total);
   $("#delivery").click(function () {
-    total = order.addDelivery(total);
-    updateTotal(total);
+    let total2 = order.calculateCost(order);
+    total2 = order.addDelivery(total2);
+    updateTotal(total2);
     $(this).addClass("active");
     $(this).prop("disabled", true);
+    $("#receipt").append("<ul><p> Delivery: $5 </p><ul>");
+    $("#address-form").removeClass("hidden");
+    $("#finish-button").addClass("hidden");
+  });
+  $("#address-form").submit(function (event) {
+    event.preventDefault();
+    $("#address-form").addClass("hidden");
+    $("#finish-button").removeClass("hidden");
+  });
+  $("#finsih-button").click(function () {
+    $("#checkout-form").addClass("hidden");
+    $("#order-complete").removeClass("hidden");
+    buildCheckoutPage(order);
   });
 }
 function updateTotal(total) {

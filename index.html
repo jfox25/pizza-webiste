@@ -41,9 +41,23 @@
     <div id="checkout-form" class="hidden">
       <h3>Last Step to get your Pie</h2>
       <div id="receipt">
-        <p id="total"></p>
       </div>
+      <p id="total"></p>
       <button id="delivery">Add Delivery</button>
+      <form id="address-form" class="hidden">
+        <label for="">Street</label>
+        <input id="street-input" type="text" required>
+        <label for="">City</label>
+        <input id="city-input" type="text" required>
+        <button type="submit">Submit</button>
+      </form>
+      <button id="finish-button">Complete Order</button>
+    </div>
+    <div id="order-complete" class="hidden">
+      <h1>Your Order is on the Way!</h1>
+      <h3 id="street"></h3>
+      <h4 id="city"></h4>
+      <h4 id="total-ammont"></h4>
     </div>
   </body>
 </html>
