@@ -8,6 +8,10 @@
   </head>
   <body>
     <div id="order-form">
+      <div class="counter">
+        <p>Pie Counter:</p>
+        <p id="pizza-number">1</p>
+      </div>
       <div class="pizza-form" id="pizza-form-1">
         <label for="size-input">Size</label>
         <select id="size-input">
@@ -33,6 +37,13 @@
         <button id="add-pizza">Add Another Pizza</button>
         <button id="checkout">Checkout</button>
       </div>
+    </div>
+    <div id="checkout-form" class="hidden">
+      <h3>Last Step to get your Pie</h2>
+      <div id="receipt">
+        <p id="total"></p>
+      </div>
+      <button id="delivery">Add Delivery</button>
     </div>
   </body>
 </html>

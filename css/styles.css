@@ -10,3 +10,13 @@
   margin-top: 30px;
   margin: auto;
 }
+.counter {
+  display: flex;
+  flex-direction: row;
+}
+.hidden {
+  display: none;
+}
+.active {
+  background-color: blue;
+}
