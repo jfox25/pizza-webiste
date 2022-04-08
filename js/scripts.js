@@ -38,3 +38,14 @@ Pizza.prototype.addTopping = function (topping) {
 Pizza.prototype.changeSize = function (size) {
   this.size = size;
 };
+Pizza.prototype.removeTopping = function (name) {
+  this.toppings.forEach((top) => {
+    if ((top = name)) {
+      const index = this.toppings.indexOf(top);
+      this.toppings.splice(index, 1);
+    }
+  });
+};
+function Topping(name) {
+  this.name = name;
+}
