@@ -10,10 +10,10 @@ Describe: Order.prototype.addPizza()
 
 Test:"adds a pizza object to the order"
 Code: let order = new Order()
-      let pizza = {toppings: none, size: medium}
+      let pizza = new Pizza(["pepperoni", "ham"], "medium")
       order.addPizza(pizza)
       console.log(order)
-Expected Result: {pizzas: {toppings: none, size: medium}}
+Expected Result: {pizzas: {toppings: [pepperoni, ham], size: medium}}
 
 Describe: Order.prototype.assignId()
 
