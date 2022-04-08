@@ -28,8 +28,32 @@ Order.prototype.removePizza = function (id) {
   return true;
 };
 
+Order.prototype.calculateCost = function (order) {
+  let totalCost = 0;
+  Object.keys(order.pizzas).forEach(function (key) {
+    const pizza = order.findPizza(key);
+    const cost = 5;
+    const toppingCount = pizza.topping.length;
+    if (toppingCount <= 2) {
+      cost += 3;
+    } else if (toppingCount === 3) {
+      cost += 4;
+    } else {
+      cost += 5;
+    }
+    if (pizza.size === "medium") {
+      cost += 3;
+    } else if (pizza.size === "large") {
+      cost += 5;
+    }
+    pizza.cost = cost;
+    totalCost += cost;
+  });
+  return totalCost;
+};
+
 function Pizza(toppings, size) {
-  this.toppings = toppings;
+  this.toppings = [toppings];
   this.size = size;
 }
 Pizza.prototype.addTopping = function (topping) {
@@ -46,6 +70,42 @@ Pizza.prototype.removeTopping = function (name) {
     }
   });
 };
-function Topping(name) {
-  this.name = name;
+// function Topping(name) {
+//   this.name = name;
+// }
+
+// UI Logic
+
+function addNewToppingInput(toppingCount, pizzaForm) {
+  $(pizzaForm).append(
+    "<label id='topping-label-" +
+      toppingCount +
+      "'> Topping " +
+      toppingCount +
+      "</label>"
+  );
+  const select = document.getElementById("topping-input-1");
+  const selectClone = select.cloneNode(true);
+  selectClone.id = "topping-input-" + toppingCount;
+  $(pizzaForm).append(selectClone);
 }
+function orderPizza(order) {
+  let toppingCount = 1;
+  const pizzaForm = $("#pizza-form-1");
+  $("#add-topping").click(function () {
+    toppingCount++;
+    addNewToppingInput(toppingCount, pizzaForm);
+  });
+  $("#add-pizza").click(function () {
+    toppingCount++;
+    addNewToppingInput(toppingCount, pizzaForm);
+  });
+}
+function startOrder() {
+  let order = new Order();
+  return order;
+}
+$(document).ready(function () {
+  const order = startOrder();
+  orderPizza(order);
+});
