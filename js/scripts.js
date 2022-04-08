@@ -5,7 +5,7 @@ function Order() {
 
 Order.prototype.addPizza = function (pizza) {
   pizza.id = this.assignId();
-  this.pizzas[pizza.size] = pizza;
+  this.pizzas[pizza.id] = pizza;
 };
 
 Order.prototype.assignId = function () {
@@ -13,8 +13,14 @@ Order.prototype.assignId = function () {
   return this.currentId;
 };
 
+Order.prototype.findPizza = function (id) {
+  if (this.pizzas[id] != undefined) {
+    return this.pizzas[id];
+  }
+  return false;
+};
+
 function Pizza(toppings, size) {
-  console.log(toppings);
   this.toppings = toppings;
   this.size = size;
 }

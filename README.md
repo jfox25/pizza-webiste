@@ -19,7 +19,7 @@ Describe: Order.prototype.assignId()
 
 Test:"assigns an id to a pizza object when added to order"
 Code: let order = new Order()
-      let pizza = {toppings: none, size: medium}
+      let pizza = new Pizza(["pepperoni", "ham"], "medium")
       order.addPizza(pizza)
       console.log(order)
 Expected Result: {pizzas: {id: 1, toppings: none, size: medium}}
@@ -28,10 +28,11 @@ Describe: Order.prototype.findPizza()
 
 Test:"finds a pizza object in an order object"
 Code: let order = new Order()
-      let pizza = {toppings: none, size: medium}
+      let pizza = new Pizza(["pepperoni", "ham"], "medium")
       order.addPizza(pizza)
+      console.log(pizza)
       order.findPizza(1)
-Expected Result: {id: 1, toppings: none, size: medium}
+Expected Result: {id: 1, toppings: ["pepperoni", "ham"], size: medium}
 
 Describe: Order.prototype.removePizza()
 
