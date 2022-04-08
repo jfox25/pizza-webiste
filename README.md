@@ -1,3 +1,43 @@
+# Pizza Website
+
+By James Fox
+
+A website that allows you to build one or more pizzas with toppings.
+
+## Technologies Used
+
+- HTML
+- CSS
+- JavaScript
+- GIT
+
+## Info
+
+Simulates a pizza checkout website. Add Toppings of you choosing and look at your receipt for details on your order.
+
+## Setup
+
+1. Clone this repository to your desktop using git clone
+2. Click on the index.html file to view the website.
+3. Start ordering pizzas!
+
+## GitHub Link
+
+[Link to Code on GitHub](https://github.com/jfox25/pizza-webiste)
+
+## Bugs
+
+No known bugs at this time.
+
+## Future Improvements
+
+- Plan to edit the css to add more elements.
+
+## License
+
+MIT
+Copyright (c) 2022 James Fox
+
 ```Javascript
 Describe: Order()
 
