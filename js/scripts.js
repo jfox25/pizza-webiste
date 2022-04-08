@@ -35,3 +35,6 @@ function Pizza(toppings, size) {
 Pizza.prototype.addTopping = function (topping) {
   this.toppings.push(topping);
 };
+Pizza.prototype.changeSize = function (size) {
+  this.size = size;
+};
