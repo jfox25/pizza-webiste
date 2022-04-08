@@ -1,6 +1,7 @@
 function Order() {
   this.pizzas = {};
   this.currentId = 0;
+  this.isDelivering = false;
 }
 
 Order.prototype.addPizza = function (pizza) {
@@ -29,6 +30,7 @@ Order.prototype.removePizza = function (id) {
 };
 Order.prototype.addDelivery = function (total) {
   total += 5;
+  this.total += 5;
   this.isDelivering = true;
   return total;
 };
@@ -55,6 +57,7 @@ Order.prototype.calculateCost = function (order) {
     pizza.cost = cost;
     totalCost += cost;
   });
+  order.totalCost = totalCost;
   return totalCost;
 };
 
@@ -142,16 +145,30 @@ function buildReceipt(order) {
     $("#" + id).remove();
   });
 }
-function buildCheckoutPage(order) {}
+function buildCheckoutPage(city, street, order) {
+  if (street !== false) {
+    $("#street").text("Street: " + street);
+  }
+  if (city !== false) {
+    $("#city").text("City: " + city);
+  }
+  $("#total-ammont").text("Total: $" + order.totalCost);
+  if (!order.isDelivering) {
+    $("#order-complete")
+      .children("h1")
+      .text("Your Order will be ready for Pickup Soon");
+  }
+}
 function checkout(order) {
   $("#order-form").addClass("hidden");
   $("#checkout-form").removeClass("hidden");
+  let street = false;
+  let city = false;
   let total = order.calculateCost(order);
   buildReceipt(order);
   updateTotal(total);
   $("#delivery").click(function () {
-    let total2 = order.calculateCost(order);
-    total2 = order.addDelivery(total2);
+    let total2 = order.addDelivery(order.totalCost);
     updateTotal(total2);
     $(this).addClass("active");
     $(this).prop("disabled", true);
@@ -163,11 +180,14 @@ function checkout(order) {
     event.preventDefault();
     $("#address-form").addClass("hidden");
     $("#finish-button").removeClass("hidden");
+    city = $("#city-input").val();
+    street = $("#street-input").val();
   });
-  $("#finsih-button").click(function () {
+  $("#finish-button").click(function () {
+    console.log("click");
     $("#checkout-form").addClass("hidden");
     $("#order-complete").removeClass("hidden");
-    buildCheckoutPage(order);
+    buildCheckoutPage(city, street, order);
   });
 }
 function updateTotal(total) {
