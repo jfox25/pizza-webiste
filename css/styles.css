@@ -1,3 +1,80 @@
+body {
+  background-color: rgb(183, 157, 122);
+  font-size: 20px;
+  width: 90%;
+  margin: auto;
+}
+select,
+input {
+  background-color: rgb(232, 193, 142);
+  font-size: 18px;
+}
+label {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+button {
+  background-color: rgb(168, 70, 55);
+  padding: 6px;
+  border: none;
+  border-radius: 5px;
+  width: 80%;
+  margin: auto;
+  margin-top: 15px;
+}
+button:hover {
+  background-color: rgb(211, 87, 68);
+  cursor: pointer;
+}
+h1 {
+  text-align: center;
+}
+ul {
+  list-style: none;
+}
+ul p {
+  display: inline;
+  color: rgb(154, 64, 50);
+  margin-right: 100px;
+  font-size: 25px;
+}
+ul button {
+  width: 20px;
+  display: inline;
+}
+ul li {
+  margin-top: 5px;
+}
+#total {
+  margin-left: 38px;
+  color: rgb(154, 64, 50);
+  font-size: 30px;
+}
+#checkout {
+  margin-top: 50px;
+  background-color: rgb(113, 143, 153);
+}
+#checkout:hover,
+#finish-button:hover {
+  background-color: rgb(150, 186, 198);
+}
+#delivery {
+  display: block;
+  width: 120px;
+}
+#finish-button {
+  display: block;
+  width: 150px;
+  background-color: rgb(113, 143, 153);
+  margin-bottom: 30px;
+}
+.address {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin: auto;
+  margin-bottom: 20px;
+}
 .pizza-form {
   display: flex;
   flex-direction: column;
@@ -5,6 +82,8 @@
   margin: auto;
 }
 .button-group {
+  display: flex;
+  flex-direction: column;
   text-align: center;
   width: 35%;
   margin-top: 30px;
@@ -18,5 +97,5 @@
   display: none;
 }
 .active {
-  background-color: blue;
+  background-color: lightgray;
 }

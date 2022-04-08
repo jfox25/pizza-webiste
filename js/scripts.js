@@ -191,7 +191,7 @@ function checkout(order) {
   });
 }
 function updateTotal(total) {
-  $("#total").text("$" + total);
+  $("#total").text("Total: $" + total);
 }
 function orderPizza(order) {
   let toppingCount = 1;
