@@ -38,7 +38,7 @@ Describe: Order.prototype.removePizza()
 
 Test:"removes a pizza object in an order object"
 Code: let order = new Order()
-      let pizza = {toppings: none, size: medium}
+      let pizza = new Pizza(["pepperoni", "ham"], "medium")
       order.addPizza(pizza)
       order.removePizza(1)
       console.log(order)
@@ -47,22 +47,23 @@ Expected Result: {pizzas: {}}
 Describe: Pizza()
 
 Test:"Creates a new pizza object"
-Code: let pizza = new Pizza(pepperoni, small)
+Code: let pizza = new Pizza("pepperoni", "small")
       console.log(pizza)
 Expected Result: {toppings: [pepperoni],size: small}
 
 Describe: Pizza.prototype.addTopping()
 
 Test:"add toppings to a pizza object"
-Code: let pizza = new Pizza(pepperoni, small)
-      pizza.addTopping(bacon)
+Code: let pizza = new Pizza(["pepperoni"], "small")
+      console.log(pizza)
+      pizza.addTopping("bacon")
       console.log(pizza)
 Expected Result: {toppings: [pepperoni, bacon],size: small}
 
 Describe: Pizza.prototype.changeSize()
 
 Test:"changes the size of a pizza object"
-Code: let pizza = new Pizza(pepperoni, small)
+Code: let pizza = new Pizza("pepperoni", "small")
       pizza.changeSize(large)
       console.log(pizza)
 Expected Result: {toppings: [pepperoni],size:  large}
@@ -70,7 +71,7 @@ Expected Result: {toppings: [pepperoni],size:  large}
 Describe: Pizza.prototype.removeTopping()
 
 Test:"removes a topping from a pizza object"
-Code: let pizza = new Pizza(pepperoni, small)
+Code: let pizza = new Pizza("pepperoni", "small")
       pizza.addTopping(bacon)
       pizza.removeTopping(pepperoni)
       console.log(pizza)
