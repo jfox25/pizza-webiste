@@ -20,6 +20,14 @@ Order.prototype.findPizza = function (id) {
   return false;
 };
 
+Order.prototype.removePizza = function (id) {
+  if (this.pizzas[id] === undefined) {
+    return false;
+  }
+  delete this.pizzas[id];
+  return true;
+};
+
 function Pizza(toppings, size) {
   this.toppings = toppings;
   this.size = size;
