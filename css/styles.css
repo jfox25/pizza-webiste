@@ -1,6 +1,7 @@
 body {
   background-color: rgb(183, 157, 122);
   font-size: 20px;
+  max-width: 1200px;
   width: 90%;
   margin: auto;
 }
@@ -74,6 +75,14 @@ ul li {
   width: 30%;
   margin: auto;
   margin-bottom: 20px;
+}
+#order-complete {
+  text-align: center;
+}
+.logo img {
+  width: 110px;
+  position: fixed;
+  right: 20px;
 }
 .pizza-form {
   display: flex;
