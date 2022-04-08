@@ -89,6 +89,16 @@ function addNewToppingInput(toppingCount, pizzaForm) {
   selectClone.id = "topping-input-" + toppingCount;
   $(pizzaForm).append(selectClone);
 }
+function buildPizza(toppingCount, order) {
+  let toppingsArray = [];
+  for (let i = 1; i < toppingCount + 1; i++) {
+    const topping = $("#topping-input-" + i).val();
+    toppingsArray.push(topping);
+  }
+  const size = $("#size-input").val();
+  let pizza = new Pizza(toppingsArray, size);
+  order.addPizza(pizza);
+}
 function orderPizza(order) {
   let toppingCount = 1;
   const pizzaForm = $("#pizza-form-1");
@@ -97,8 +107,7 @@ function orderPizza(order) {
     addNewToppingInput(toppingCount, pizzaForm);
   });
   $("#add-pizza").click(function () {
-    toppingCount++;
-    addNewToppingInput(toppingCount, pizzaForm);
+    buildPizza(toppingCount, order);
   });
 }
 function startOrder() {
