@@ -30,7 +30,7 @@ Order.prototype.removePizza = function (id) {
 };
 Order.prototype.addDelivery = function (total) {
   total += 5;
-  this.total += 5;
+  this.totalCost += 5;
   this.isDelivering = true;
   return total;
 };
@@ -38,9 +38,7 @@ Order.prototype.calculateCost = function (order) {
   let totalCost = 0;
   Object.keys(order.pizzas).forEach(function (key) {
     const pizza = order.findPizza(key);
-    console.log(pizza);
     let cost = 5;
-    console.log(pizza.toppingCount);
     const toppingCount = pizza.toppingCount;
     if (toppingCount <= 2) {
       cost += 3;
@@ -68,17 +66,6 @@ function Pizza(toppings, size, toppingCount) {
 }
 Pizza.prototype.addTopping = function (topping) {
   this.toppings.push(topping);
-};
-Pizza.prototype.changeSize = function (size) {
-  this.size = size;
-};
-Pizza.prototype.removeTopping = function (name) {
-  this.toppings.forEach((top) => {
-    if ((top = name)) {
-      const index = this.toppings.indexOf(top);
-      this.toppings.splice(index, 1);
-    }
-  });
 };
 
 // UI Logic
@@ -115,7 +102,7 @@ function resetForm(pizzaForm, toppingCount) {
   $("#topping-input-1").val("Pepperoni");
 }
 function updatePizzaCounter(order) {
-  $("#pizza-number").text(order.currentId + 1);
+  $("#pizza-number").text("#" + (order.currentId + 1));
 }
 function buildReceipt(order) {
   const receipt = $("#receipt");
@@ -184,7 +171,6 @@ function checkout(order) {
     street = $("#street-input").val();
   });
   $("#finish-button").click(function () {
-    console.log("click");
     $("#checkout-form").addClass("hidden");
     $("#order-complete").removeClass("hidden");
     buildCheckoutPage(city, street, order);
@@ -192,6 +178,15 @@ function checkout(order) {
 }
 function updateTotal(total) {
   $("#total").text("Total: $" + total);
+}
+function loadingIndicator() {
+  const time = Math.floor(Math.random() * 2) + 1;
+  $("#loading").removeClass("hidden");
+  $("#pizza-form-1").addClass("hidden");
+  setTimeout(() => {
+    $("#loading").addClass("hidden");
+    $("#pizza-form-1").removeClass("hidden");
+  }, time * 1000);
 }
 function orderPizza(order) {
   let toppingCount = 1;
@@ -205,6 +200,7 @@ function orderPizza(order) {
     resetForm(pizzaForm, toppingCount);
     toppingCount = 1;
     updatePizzaCounter(order);
+    loadingIndicator();
   });
   $("#checkout").click(function () {
     buildPizza(toppingCount, order);

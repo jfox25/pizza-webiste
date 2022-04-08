@@ -27,6 +27,19 @@ button:hover {
   background-color: rgb(211, 87, 68);
   cursor: pointer;
 }
+.loading img {
+  display: block;
+  width: 200px;
+  margin: auto;
+}
+.loading p {
+  text-align: center;
+}
+.counter p {
+  margin-right: 5px;
+  color: rgb(154, 64, 50);
+  font-size: 25px;
+}
 h1 {
   text-align: center;
 }
@@ -63,7 +76,7 @@ ul li {
   display: block;
   width: 120px;
 }
-#finish-button {
+.finish-button {
   display: block;
   width: 150px;
   background-color: rgb(113, 143, 153);

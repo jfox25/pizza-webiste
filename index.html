@@ -13,7 +13,11 @@
     <div id="order-form">
       <div class="counter">
         <p>Pie Counter:</p>
-        <p id="pizza-number">1</p>
+        <p id="pizza-number">#1</p>
+      </div>
+      <div id="loading" class="loading hidden">
+        <img src="/images/loading.png" alt="" />
+        <p>Loading...</p>
       </div>
       <div class="pizza-form" id="pizza-form-1">
         <label for="size-input">Size</label>
@@ -53,7 +57,7 @@
         <input id="city-input" type="text" required />
         <button type="submit">Submit</button>
       </form>
-      <button id="finish-button">Complete Order</button>
+      <button id="finish-button" class="finish-button">Complete Order</button>
     </div>
     <div id="order-complete" class="hidden">
       <h1>Your Order is on the Way!</h1>
